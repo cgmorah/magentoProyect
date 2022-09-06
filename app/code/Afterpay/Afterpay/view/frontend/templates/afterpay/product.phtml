@@ -1,0 +1,42 @@
+<?php
+/**
+ * Magento 2 extensions for Afterpay Payment
+ *
+ * @author Afterpay
+ * @copyright 2016-2020 Afterpay https://www.afterpay.com
+ */
+/** @var \Afterpay\Afterpay\Block\Catalog\Installments $block */
+$product_type = $block->getTypeOfProduct();
+$data_amount = $block->getFinalAmount();
+if($block->isPaymentMethodActive() && $block->isDisplayOnProductPage() && $product_type != "grouped" && $block->canUseCurrency() && $data_amount>0){
+    $afterpay_eligible = "true";
+    if (($block->canShow() === false)) {
+        $afterpay_eligible = "false";
+    }
+    $min_limit=$block->getMinOrderLimit();
+    $show_lower_limit="true";
+    if((float)$min_limit<1){
+        $show_lower_limit="false";
+    }
+    ?>
+    <script
+    	src="<?= $block->escapeUrl($block->getAfterpayJsLibUrl());?>"
+    	data-min="<?= /* @noEscape */ $min_limit; ?>"
+    	data-max="<?= /* @noEscape */ $block->getMaxOrderLimit(); ?>" async></script>
+    <?php
+    $store_currency = $block->getCurrentCurrency();
+    $data_locale = $block->getCurrentLocale();
+
+    $enable_cbt = $this->helper('Afterpay\Afterpay\Helper\Data')->getConfig('payment/afterpaypayovertime/enable_cbt');
+    $data_enable_cbt = ! empty($enable_cbt) ? "true" : "false";
+    ?>
+    <afterpay-placement
+    	data-locale="<?= /* @noEscape */  $data_locale;?>"
+    	data-currency="<?= /* @noEscape */ $store_currency;?>"
+    	data-amount="<?= /* @noEscape */ $data_amount; ?>"
+    	data-is-eligible="<?= /* @noEscape */ $afterpay_eligible;?>"
+    	data-cbt-enabled="<?= /* @noEscape */ $data_enable_cbt;?>"
+    	data-show-lower-limit="<?= /* @noEscape */  $show_lower_limit;?>"></afterpay-placement>
+<?php
+}
+?>
