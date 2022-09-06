@@ -1,0 +1,126 @@
+<div class="top-home-content">
+	<div class="banner-slider banner-slider2">
+		<?php // echo $this->getLayout()->createBlock('Rokanthemes\SlideBanner\Block\Slider')->setslider_id('home')->toHtml(); ?>
+		<?= $block->getLayout()->createBlock('Mageplaza\BannerSlider\Block\Widget')->setSliderId(1)->toHtml();?>
+	</div>
+</div>
+
+<div class="top-home-content">
+	<div class="container">
+		<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('block_top')->toHtml(); ?>
+		<div class="banner_mid_1">
+			<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('banner_mid_home6')->toHtml(); ?>
+		</div>
+		<div class="home-text-part-main-block">
+			<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('home-text-block')->toHtml(); ?>
+		</div>
+		<div class="store-information-home-part">
+			<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('home-store-information')->toHtml(); ?>
+		</div>
+		<div class="new_product">
+			<?php echo $block->getLayout()->createBlock('Rokanthemes\Newproduct\Block\Newproduct')->setTemplate('Rokanthemes_Newproduct::newproduct.phtml')->toHtml();?>
+		</div>
+	</div>
+</div>
+
+<!-- <div class="onsale_product">
+	<div class="container">
+		<?php echo $block->getLayout()->createBlock('Rokanthemes\Onsaleproduct\Block\Onsaleproduct')->setTemplate('Rokanthemes_Onsaleproduct::onsaleproduct.phtml')->toHtml();?>
+	</div>
+</div> -->
+
+<div class="onsale_product preorder_product">
+	<div class="container">
+		<?php echo $block->getLayout()->createBlock('Rokanthemes\Preorderproduct\Block\Preorderproduct')->setTemplate('Rokanthemes_Preorderproduct::preorderproduct.phtml')->toHtml();?>
+	</div>
+</div>
+
+<div class="block_notification">
+	<div class="container">
+		<marquee direction="" onmouseover="this.stop();" onmouseout="this.start();">
+			<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('notification_home6')->toHtml(); ?>
+		</marquee>
+	</div>
+</div>
+
+<div class="top-home-content">
+	<div class="container">
+		<?php  //echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('category_home6')->toHtml(); ?>
+		<div class="new_product">
+			<?php echo $block->getLayout()->createBlock('Rokanthemes\BestsellerProduct\Block\Bestseller')->setTemplate('Rokanthemes_BestsellerProduct::bestseller.phtml')->toHtml();?>
+		</div>
+		
+		<div class="block-testimonials">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 hidden-sm">
+					<div class="video-section-part">
+						<iframe width="100%" height="400" src="https://www.youtube.com/embed/-nKpzojOw1E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+					</div>
+					
+				</div>
+				<div class="col-lg-6 col-md-6 hidden-sm">
+					<div class="video-section-part">
+						<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('youtube-video-section-homepage')->toHtml(); ?>
+					</div>					
+				</div>
+				
+				 
+			</div>
+		</div>
+		<div class="block-testimonials">
+			<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('google-testimonil')->toHtml(); ?>
+		</div>
+	</div>
+	<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('home-section-banner-new-part')->toHtml(); ?>
+	<div class="container">
+		 <div class="the_blog">
+			<?php  echo $block->getLayout()->createBlock('Rokanthemes\Blog\Block\Sidebar\Recent')->setTemplate('Rokanthemes_Blog::sidebar/slider.phtml')->toHtml();?>
+		</div>
+	</div>
+
+</div>
+<!--<script type="text/javascript">
+require([
+		'jquery',
+		'mage/mage',
+		'rokanthemes/owl'
+	], function ($) {
+		'use strict';
+	$( document ).ready(function() {
+		$("ul.tabs li").click(function() {
+			$(this).closest("ul").find("li").removeClass("active");
+			$(this).addClass("active");
+			$(this).closest(".common-tab-system-fixed").find(".tab_content").hide();
+			$(this).closest(".common-tab-system-fixed").find(".tab_content").removeClass("animate1");
+			var activeTab = $(this).attr("rel");
+			$("#"+activeTab) .addClass("animate1");
+			$("#"+activeTab).fadeIn();
+		});
+	});
+});
+</script>-->
+<script type="text/javascript">
+	require([
+		'jquery',
+		'mage/mage',
+		'rokanthemes/owl'
+	], function ($) {
+		'use strict';
+	jQuery(document).ready(function ($) {
+		$('.testimo-slider .wrap-item').owlCarousel({
+			lazyLoad:true,
+			items:1,
+			itemsCustom: [ 
+			[0, 1], 
+			[480, 1], 
+			[768, 1], 
+			[992, 1], 
+			[1200, 1] 
+			],
+			pagination: true,
+			navigation: false,
+			navigationText:['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>']
+		});
+	});
+});
+</script>

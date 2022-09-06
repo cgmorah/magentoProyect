@@ -1,0 +1,57 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+<?php
+    $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+	$_helper_wbase = $this->helper(Webindiainc\Base\Helper\Data::class);
+    $_product = $block->getProduct();
+?>
+<?php if ($_additional = $block->getAdditionalData()) :?>
+    <div class="additional-attributes-wrapper table-wrapper">
+        <table class="data table additional-attributes" id="product-attribute-specs-table">
+            <caption class="table-caption"><?= $block->escapeHtml(__('More Information')) ?></caption>
+            <tbody>
+			
+			<?php $isDisplayCurrencyWithValue = false; ?>
+			
+            <?php foreach ($_additional as $_data) :?>
+			
+				<?php if($_data['code'] == 'aus_first_item') {
+					echo '<tr><th class="shipping_attribute_heading_start">Shipping cost:</th></tr>';
+					$isDisplayCurrencyWithValue = true;
+				} ?>
+                <tr>
+                    <th class="col label" scope="row"><?= $block->escapeHtml($_data['label']) ?></th>
+                    
+					<?php if($isDisplayCurrencyWithValue) { ?>
+						<td class="col data" data-th="<?= $block->escapeHtmlAttr($_data['label']) ?>">
+							<?php echo $_helper_wbase->getCurrencySymbol(); ?>
+							<?php echo $_helper->productAttribute($_product, $_data['value'], $_data['code']); ?>
+						</td>
+					<?php } else { ?>
+						<td class="col data" data-th="<?= $block->escapeHtmlAttr($_data['label']) ?>">
+							<?php echo $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?>
+						</td>
+					<?php } ?>
+                </tr>
+				
+				<?php if($_data['code'] == 'overseas_second_item') {
+					echo '<tr><th class="shipping_attribute_heading_end"></th></tr>';
+					$isDisplayCurrencyWithValue = false;
+				} ?>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+<?php endif;?>
