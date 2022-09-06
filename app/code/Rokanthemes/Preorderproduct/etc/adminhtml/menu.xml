@@ -1,0 +1,6 @@
+﻿<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+    	<add id="Rokanthemes_Preorderproduct::rokanbase_preorderproduct" title="Pre-order Products" module="Rokanthemes_Preorderproduct" sortOrder="0" parent="Rokanthemes_RokanBase::rokanbase_setting" resource="Rokanthemes_Preorderproduct::rokanbase_preorderproduct" action="adminhtml/system_config/edit/section/preorderproduct" />
+    </menu>
+</config>
